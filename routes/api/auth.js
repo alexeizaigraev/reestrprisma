@@ -39,20 +39,20 @@ router.patch(
 
 router.put(
   "/:id",
-  validateBody(schemas.registerSchema),
+  //validateBody(schemas.registerSchema),
   AuthController.updateUserData
 );
 
 router.patch(
   "/user",
   authenticate,
-  validateBody(schemas.updateSubscriptionSchema),
+  //validateBody(schemas.updateSubscriptionSchema),
   AuthController.updateSubscription
 );
 
 router.patch(
   "/update",
-  authenticate,
+  //authenticate,
   uploadImage.single("avatarURL"),
   AuthController.updateUser
 );

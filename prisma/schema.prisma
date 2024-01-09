@@ -8,18 +8,19 @@ datasource db {
 }
 
 model users {
-  id                Int       @id @default(autoincrement())
+  id                Int        @id @default(autoincrement())
   name              String?
-  email             String    @unique
-  password          String    @unique
+  email             String     @unique
+  password          String     @unique
   subscription      String?
   status            String?
-  token             String?   @unique
-  avatarurl         String?   @unique
-  verify            Boolean?  @default(false)
-  verificationtoken String?   @unique
-  createdat         DateTime? @default(dbgenerated("LOCALTIMESTAMP")) @db.Date
-  updateat          DateTime? @db.Date
+  token             String?    @unique
+  avatarurl         String?    @unique
+  verify            Boolean?   @default(false)
+  verificationtoken String?    @unique
+  createdat         DateTime?  @default(dbgenerated("LOCALTIMESTAMP")) @db.Date
+  updateat          DateTime?  @db.Date
+  contacts          contacts[]
 }
 
 model contacts {
@@ -41,5 +42,6 @@ model contacts {
   avatarurl         String?   @default("Введите значение")
   createdat         DateTime? @default(dbgenerated("LOCALTIMESTAMP")) @db.Date
   updateat          DateTime? @db.Date
-  owner             Json
+  ownerid           Int
+  users             users     @relation(fields: [ownerid], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "contacts_fkey_ownerid")
 }

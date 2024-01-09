@@ -9,7 +9,10 @@ const router = express.Router();
 
 router.get("/", authenticate, contactsController.getAllContacts);
 
-router.get("/:id", authenticate, isValidId, contactsController.getContactById);
+router.get("/:id", 
+  authenticate, 
+  //isValidId, 
+  contactsController.getContactById);
 
 router.post(
   "/",
@@ -29,7 +32,7 @@ router.put(
   "/:id",
   authenticate,
   //isValidId,
-  validateBody(schemas.contactAddSchema),
+  //validateBody(schemas.contactAddSchema),
   contactsController.updateContact
 );
 

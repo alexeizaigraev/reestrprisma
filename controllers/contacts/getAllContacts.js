@@ -8,7 +8,9 @@ const getAllContacts = async (req, res) => {
   console.log('req.user=', req.user)
   
   // const { page = 1, limit = 20, favorite } = req.query;
-  const { page0, limit = 2 } = req.query;
+  // const { page0, limit = 2 } = req.query;
+
+  const limit = 2
   const page = req.body.page
   console.log("req.body", req.body)
   console.log('page=', page, typeof page)
@@ -34,7 +36,7 @@ const getAllContacts = async (req, res) => {
       }
     })
   }
-
+  console.log('email=', email)
   res.json(result);
 };
 

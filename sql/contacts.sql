@@ -19,7 +19,7 @@ CREATE TABLE contacts (
   avatarurl TEXT DEFAULT 'Введите значение',
   createdat DATE DEFAULT LOCALTIMESTAMP,
   updateat DATE,
-  owner JSONB NOT NULL
+  ownerid INTEGER NOT NULL,
 
-  --CONSTRAINT contacts_fkey_owner_id FOREIGN KEY (owner.id) REFERENCES users (id)
+  CONSTRAINT contacts_fkey_ownerid FOREIGN KEY (ownerid) REFERENCES users (id)
 );

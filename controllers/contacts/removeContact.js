@@ -1,17 +1,18 @@
-const { Contact } = require("../../models/contacts");
+const deleteContactPrisma = require('../../prisma.methods/contact/deleteContact')
+const getContactByIdPrisma = require('../../prisma.methods/contact/getContactById')
 const { HttpError } = require("../../helpers");
 const { ctrlWrapper } = require("../../decorators");
 
 const removeContact = async (req, res) => {
-  const { id } = req.params;
-  const { _id: owner } = req.user;
-  const result = await Contact.findOneAndRemove({ _id: id, owner });
+  let idPar = req.params.id;
+  idPar = parseInt(idPar)
+  const { body } = req;
+  const userId = req.user.id;
+  const result = await deleteContactPrisma({ id: idPar, ownerid: userId }, body);
   if (!result) {
     throw HttpError(404, `Not found`);
   }
-  res.json({
-    message: "Contact deleted",
-  });
+  res.json(result);
 };
 
 module.exports = {

@@ -1,16 +1,19 @@
-const { User } = require("../../models/user");
+const updateUserPrisma = require("../../prisma.methods/user/updateUser");
 const { HttpError } = require("../../helpers");
 // const { cloudinary } = require("../../cloudinary");
 const { ctrlWrapper } = require("../../decorators");
+const { parseConnectionUrl } = require("nodemailer/lib/shared");
 
 
 const updateUserData = async (req, res) => {
-  const { id } = req.params;
+  let { id } = req.params;
+  console.log("req.params=", req.params)
+  console.log("req.user=", req.user)
+  console.log("req.body=", req.body)
+  id = parseInt(id)
   const { body } = req;
-  const { _id: owner } = req.user;
-  const result = await Contact.findOneAndUpdate({ _id: id, owner }, body, {
-    new: true,
-  });
+  const { id: owner } = req.user;
+  const result = await updateUserPrisma({ id: id}, body);
   if (!result) {
     throw HttpError(404, `Not found`);
   }

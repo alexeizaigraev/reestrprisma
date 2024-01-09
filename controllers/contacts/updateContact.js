@@ -1,14 +1,14 @@
-const { Contact } = require("../../models/contacts");
+const updateContactPrisma = require('../../prisma.methods/contact/updateContact')
+const getContactByIdPrisma = require('../../prisma.methods/contact/getContactById')
 const { HttpError } = require("../../helpers");
 const { ctrlWrapper } = require("../../decorators");
 
 const updateContact = async (req, res) => {
-  const { id } = req.params;
+  let idPar = req.params.id;
+  idPar = parseInt(idPar)
   const { body } = req;
-  const { _id: owner } = req.user;
-  const result = await Contact.findOneAndUpdate({ _id: id, owner }, body, {
-    new: true,
-  });
+  const userId = req.user.id;
+  const result = await updateContactPrisma({ id: idPar, ownerid: userId }, body);
   if (!result) {
     throw HttpError(404, `Not found`);
   }
