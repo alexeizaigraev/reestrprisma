@@ -1,11 +1,17 @@
-const { Contact } = require("../../models/contacts");
+//const getAllContacts = require('../../prisma.methods/contact/getAllContacts')
+const {PrismaClient, prisma} = require('../../db')
 const { ctrlWrapper } = require("../../decorators");
 
 const getAllContacts = async (req, res) => {
   
-  const { _id: owner, status: status, email } = req.user;
+  const { id: owner, status: status, email } = req.user;
+  console.log('req.user=', req.user)
   
-  const { page = 1, limit = 20, favorite } = req.query;
+  // const { page = 1, limit = 20, favorite } = req.query;
+  const { page0, limit = 2 } = req.query;
+  const page = req.body.page
+  console.log("req.body", req.body)
+  console.log('page=', page, typeof page)
   const skip = (page - 1) * limit;
 
 
@@ -13,27 +19,20 @@ const getAllContacts = async (req, res) => {
 
   if (status === 'admin') {
     // Если статус пользователя - admin, получаем все записи
-    result = await Contact.find(
-      
-      {
-        skip,
-        limit: Number(limit),
-      }
-    ).populate("owner", "email subscription");
+    result = await prisma.contacts.findMany({
+      skip,
+      take: limit,
+    })
+    // result = await prisma.contacts.findMany()
   } else {
     // Если статус пользователя не admin, получаем записи, где email соответствует email пользователя
-    result = await Contact.find(
-      {
-        
-        email: email,
-        // ...(favorite ? { favorite } : {}),
-      },
-      "-createdAt -updatedAt",
-      {
-        skip,
-        limit: Number(limit),
+    result = await prisma.contacts.findMany({
+      skip,
+      take: limit,
+      where: {
+        email: email
       }
-    );
+    })
   }
 
   res.json(result);

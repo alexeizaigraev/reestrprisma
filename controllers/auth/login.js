@@ -32,7 +32,7 @@ const login = async (req, res) => {
   };
   console.log('user.id= ', user.id)
   console.log('SECRET_KEY= ', SECRET_KEY)
-  const token = jwt.sign(payload, SECRET_KEY, { expiresIn: "23h" });
+  const token = jwt.sign(payload, SECRET_KEY, { expiresIn: "230h" });
   console.log('token= ', token)
   const result = await updateUser({id: user.id}, {token: token})
 

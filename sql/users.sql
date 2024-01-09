@@ -13,4 +13,4 @@ CREATE TABLE users (
   verificationtoken TEXT UNIQUE,
   createdat DATE DEFAULT LOCALTIMESTAMP,
   updateat DATE
-)
+);

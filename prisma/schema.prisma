@@ -21,3 +21,25 @@ model users {
   createdat         DateTime? @default(dbgenerated("LOCALTIMESTAMP")) @db.Date
   updateat          DateTime? @db.Date
 }
+
+model contacts {
+  id                Int       @id @default(autoincrement())
+  n                 Int?      @default(0)
+  form              String?   @default("Введите значение")
+  nnumber           String?   @default("Введите значение")
+  fio               String
+  edrpu             String?   @default("Введите значение")
+  passport          String?   @default("Введите значение")
+  birthday          String?   @default("Введите значение")
+  registrationplase String?   @default("Введите значение")
+  adress            String?   @default("Введите значение")
+  phone             String?   @default("Введите значение")
+  email             String    @unique
+  membershipfee     Decimal?  @default(0) @db.Decimal(20, 2)
+  share             Decimal?  @default(0) @db.Decimal(20, 2)
+  payshare          Decimal?  @default(0) @db.Decimal(20, 2)
+  avatarurl         String?   @default("Введите значение")
+  createdat         DateTime? @default(dbgenerated("LOCALTIMESTAMP")) @db.Date
+  updateat          DateTime? @db.Date
+  owner             Json
+}

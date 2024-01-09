@@ -1,10 +1,13 @@
-const { Contact } = require("../../models/contacts");
+const createContact = require('../../prisma.methods/contact/createContact')
+const getUser = require('../../prisma.methods/user/getUser')
+
 const { ctrlWrapper } = require("../../decorators");
 
 const addContact = async (req, res) => {
-  const { body } = req;
-  const { _id: owner } = req.user;
-  const result = await Contact.create({ ...body, owner });
+  const { body } = req
+  const owner = body.owner
+  
+  const result = await createContact({ ...body});
   res.status(201).json(result);
 };
 

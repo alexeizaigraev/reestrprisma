@@ -14,21 +14,21 @@ router.get("/:id", authenticate, isValidId, contactsController.getContactById);
 router.post(
   "/",
   authenticate,
-  validateBody(schemas.contactAddSchema),
+  //validateBody(schemas.contactAddSchema),
   contactsController.addContact
 );
 
 router.delete(
   "/:id",
   authenticate,
-  isValidId,
+  //isValidId,
   contactsController.removeContact
 );
 
 router.put(
   "/:id",
   authenticate,
-  isValidId,
+  //isValidId,
   validateBody(schemas.contactAddSchema),
   contactsController.updateContact
 );
@@ -36,15 +36,15 @@ router.put(
 router.patch(
   "/:id/avatarUrl",
   authenticate,
-  isValidId,
-  validateBody(schemas.updateFavoriteSchema),
+  //isValidId,
+  //validateBody(schemas.updateFavoriteSchema),
   contactsController.updateStatusContact
 );
 router.patch(
   "/:id",
   authenticate,
-  isValidId,
-  validateBody(schemas.contactAddSchema),
+  //isValidId,
+  //validateBody(schemas.contactAddSchema),
   contactsController.updateContact
 );
 
