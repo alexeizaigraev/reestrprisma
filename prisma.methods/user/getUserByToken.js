@@ -5,7 +5,7 @@ module.exports = async function getUserByToken(wherePar) {
     const user = await prisma.users.findUnique({
       where: wherePar
     })
-    console.log(user)
+    // console.log(user)
     return user
   } catch(e) {
     console.log(e)

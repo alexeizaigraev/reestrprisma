@@ -56,7 +56,7 @@ const register = async (req, res) => {
     email: email,
     hashPassword: hashPassword,
     subscription: subscription,
-    avatarUrl: avatarUrl,
+    avatarurl: avatarUrl,
     verificationToken: verificationToken
   });
 

@@ -10,6 +10,6 @@ module.exports = async function updateContsct(wherePar, dataPar) {
     // console.log(contact)
     return contact
   } catch(e) {
-    // console.log(e)
+    console.log(e)
   }
 }

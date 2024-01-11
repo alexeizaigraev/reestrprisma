@@ -27,9 +27,8 @@ model contacts {
   id                Int       @id @default(autoincrement())
   n                 Int?      @default(0)
   form              String?   @default("Введите значение")
-  nnumber           String?   @default("Введите значение")
   fio               String
-  edrpu             String?   @default("Введите значение")
+  edrpu             Int?      @default(0)
   passport          String?   @default("Введите значение")
   birthday          String?   @default("Введите значение")
   registrationplase String?   @default("Введите значение")
@@ -43,5 +42,6 @@ model contacts {
   createdat         DateTime? @default(dbgenerated("LOCALTIMESTAMP")) @db.Date
   updateat          DateTime? @db.Date
   ownerid           Int
+  nnumber           Int?      @default(0)
   users             users     @relation(fields: [ownerid], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "contacts_fkey_ownerid")
 }

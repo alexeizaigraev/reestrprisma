@@ -6,7 +6,7 @@ module.exports = async function deleteUser(wherePar) {
     const user = await prisma.users.delete({
       where: wherePar
     })
-    console.log(user)
+    // console.log(user)
     return user
   } catch(e) {
     console.log(e)

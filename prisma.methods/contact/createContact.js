@@ -7,7 +7,7 @@ module.exports = async function createContact(dataPar) {
     const contact = await prisma.contacts.create({
       data: dataPar,
     })
-    console.log(contact)
+    // console.log(contact)
     return contact
   } catch(e) {
     console.log(e)

@@ -5,7 +5,7 @@ module.exports = async function getUserByPassword(passPar) {
     const user = await prisma.$queryRaw`SELECT * FROM users WHERE
     password = ${passPar}`
     if (user.length === 1) {
-      console.log('user: ', user[0])
+      // console.log('user: ', user[0])
       return user[0]
     }
   } catch(e) {

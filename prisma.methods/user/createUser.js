@@ -6,7 +6,7 @@ module.exports = async function createUser(dataPar) {
     const user = await prisma.users.create({
       data: dataPar,
     })
-    console.log(user)
+    // console.log(user)
     return user
   } catch(e) {
     console.log(e)

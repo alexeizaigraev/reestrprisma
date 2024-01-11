@@ -12,8 +12,15 @@ const createUser = require("./createUser")
 const updateUser = require("./updateUser")
 const deleteUser = require("./deleteUser")
 
+const upsertUser = require("./upsertUser")
+const dtoUserIn = require("./dtoUserIn")
+const dtoUserOut = require("./dtoUserOut")
+
 
 module.exports = {
+  upsertUser,
+  dtoUserIn,
+  dtoUserOut,
   getUserById,
   getAllUsers,
   getUserByEmailPassword,

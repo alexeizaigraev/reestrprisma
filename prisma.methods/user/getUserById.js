@@ -7,7 +7,7 @@ module.exports = async function getUserById(idPar) {
         id: idPar
       }
     })
-    console.log(user)
+    // console.log(user)
     return user
   } catch(e) {
     console.log(e)

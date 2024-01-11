@@ -7,9 +7,9 @@ const { parseConnectionUrl } = require("nodemailer/lib/shared");
 
 const updateUserData = async (req, res) => {
   let { id } = req.params;
-  console.log("req.params=", req.params)
-  console.log("req.user=", req.user)
-  console.log("req.body=", req.body)
+  // console.log("req.params=", req.params)
+  // console.log("req.user=", req.user)
+  // console.log("req.body=", req.body)
   id = parseInt(id)
   const { body } = req;
   const { id: owner } = req.user;

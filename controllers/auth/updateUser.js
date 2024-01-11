@@ -1,14 +1,16 @@
 const fs = require("fs/promises");
-const { User } = require("../../models/user");
+const updateUserPrisma = require('../../prisma.methods/user/updateUser')
 const { HttpError } = require("../../helpers");
 const { cloudinary } = require("../../cloudinary");
 const { ctrlWrapper } = require("../../decorators");
 
 const updateUser = async (req, res) => {
-  const { id } = req.user;
+  //const { id } = req.user;
+  const id = req.user.id
 
   const { name, avatarURL } = req.body;
 console.log("name, avatarURL", name, avatarURL);
+console.log("id=", id, typeof id)
   if (!name && !avatarURL) {
     throw HttpError(
       404,
@@ -47,12 +49,10 @@ console.log("name, avatarURL", name, avatarURL);
   }
 
   if (cloudinaryAvatarURL) {
-    updateData.avatarURL = cloudinaryAvatarURL;
+    updateData.avatarurl = cloudinaryAvatarURL;
   }
 
-  const newUser = await User.findByIdAndUpdate(id, updateData, {
-    new: true,
-  });
+  const newUser = await updateUserPrisma({id: id}, updateData);
 
   res.status(201).json({
     avatarURL: newUser.avatarURL,
